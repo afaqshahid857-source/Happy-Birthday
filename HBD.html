@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#fdf2f8">
+  <title>A Special Surprise 🎂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="HBD.css">
+</head>
+<body>
+
+  <!-- Floating petals -->
+  <div id="petals"></div>
+
+  <!-- ── Question Screen ── -->
+  <div class="screen" id="question-screen">
+    <div class="question-box">
+      <span class="question-emoji">🌸</span>
+      <h1>Are you Maryam?</h1>
+      <p>A special surprise is waiting for you...</p>
+      <div class="btn-group">
+        <button class="btn btn-yes" onclick="onYes()">Yes, it's me! ✨</button>
+        <button class="btn btn-no"  onclick="onNo()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── No Screen ── -->
+  <div class="screen hidden" id="no-screen">
+    <div class="no-box">
+      <span style="font-size:2.5rem;display:block;margin-bottom:1rem">🙈</span>
+      <h2>Oops!</h2>
+      <p>This surprise is only for someone very special.<br>Come back when you're Maryam! 🌸</p>
+      <button class="btn btn-yes" onclick="goBack()">Go back</button>
+    </div>
+  </div>
+
+  <!-- ── Cake Screen ── -->
+  <div class="screen hidden" id="cake-screen">
+
+    <div class="cake-container" id="cake-container">
+      <svg class="cake-svg" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Plate -->
+        <ellipse cx="140" cy="245" rx="100" ry="12" fill="#f9a8d4" opacity="0.4"/>
+
+        <!-- Bottom tier -->
+        <rect x="45" y="185" width="190" height="58" rx="8" fill="#fce7f3"/>
+        <rect x="45" y="185" width="190" height="12" rx="6" fill="#f9a8d4"/>
+        <circle cx="85"  cy="211" r="5" fill="#f472b6"/>
+        <circle cx="110" cy="220" r="4" fill="#c084fc"/>
+        <circle cx="140" cy="208" r="6" fill="#fb7185"/>
+        <circle cx="170" cy="219" r="4" fill="#f472b6"/>
+        <circle cx="195" cy="210" r="5" fill="#c084fc"/>
+        <path d="M45 237 Q65 230 85 237 Q105 244 125 237 Q145 230 165 237 Q185 244 205 237 Q225 230 235 237"
+              stroke="#f9a8d4" stroke-width="3" fill="none"/>
+
+        <!-- Middle tier -->
+        <rect x="70" y="130" width="140" height="57" rx="7" fill="#fdf4ff"/>
+        <rect x="70" y="130" width="140" height="11" rx="5.5" fill="#e9d5ff"/>
+        <path d="M90 158 Q105 148 120 158 Q135 168 150 158 Q165 148 180 158"
+              stroke="#c084fc" stroke-width="2" fill="none"/>
+        <circle cx="100" cy="165" r="4" fill="#f472b6"/>
+        <circle cx="140" cy="163" r="5" fill="#c084fc"/>
+        <circle cx="180" cy="165" r="4" fill="#f472b6"/>
+
+        <!-- Top tier -->
+        <rect x="95" y="85" width="90" height="48" rx="6" fill="#fff0f6"/>
+        <rect x="95" y="85" width="90" height="10" rx="5" fill="#fbcfe8"/>
+        <text x="140" y="117" text-anchor="middle" font-size="20">💗</text>
+
+        <!-- Candle 1 (pink) -->
+        <rect x="105" y="62" width="8" height="25" rx="4" fill="#f472b6"/>
+        <rect x="103" y="82" width="12" height="5" rx="2" fill="#fda4af"/>
+        <g class="flame" id="flame1">
+          <ellipse cx="109" cy="57" rx="4"   ry="7"   fill="#fbbf24" opacity="0.9"/>
+          <ellipse cx="109" cy="58" rx="2.5" ry="4.5" fill="#fef08a"/>
+        </g>
+        <ellipse class="smoke" id="smoke1" cx="109" cy="52" rx="2" ry="3" fill="#9ca3af"/>
+
+        <!-- Candle 2 (purple) -->
+        <rect x="127" y="58" width="8" height="29" rx="4" fill="#c084fc"/>
+        <rect x="125" y="82" width="12" height="5" rx="2" fill="#d8b4fe"/>
+        <g class="flame" id="flame2">
+          <ellipse cx="131" cy="53" rx="4"   ry="7"   fill="#f97316" opacity="0.9"/>
+          <ellipse cx="131" cy="54" rx="2.5" ry="4.5" fill="#fef08a"/>
+        </g>
+        <ellipse class="smoke" id="smoke2" cx="131" cy="48" rx="2" ry="3" fill="#9ca3af"/>
+
+        <!-- Candle 3 (tallest, red-pink) -->
+        <rect x="149" y="55" width="8" height="32" rx="4" fill="#fb7185"/>
+        <rect x="147" y="82" width="12" height="5" rx="2" fill="#fda4af"/>
+        <g class="flame" id="flame3">
+          <ellipse cx="153" cy="50" rx="5" ry="8"   fill="#fbbf24" opacity="0.9"/>
+          <ellipse cx="153" cy="51" rx="3" ry="5.5" fill="#fef08a"/>
+        </g>
+        <ellipse class="smoke" id="smoke3" cx="153" cy="44" rx="2" ry="3" fill="#9ca3af"/>
+
+        <!-- Candle 4 (pink) -->
+        <rect x="170" y="60" width="8" height="27" rx="4" fill="#f472b6"/>
+        <rect x="168" y="82" width="12" height="5" rx="2" fill="#fda4af"/>
+        <g class="flame" id="flame4">
+          <ellipse cx="174" cy="55" rx="4"   ry="7"   fill="#f97316" opacity="0.9"/>
+          <ellipse cx="174" cy="56" rx="2.5" ry="4.5" fill="#fef08a"/>
+        </g>
+        <ellipse class="smoke" id="smoke4" cx="174" cy="50" rx="2" ry="3" fill="#9ca3af"/>
+
+        <!-- Decorative stars -->
+        <text x="50"  y="70"  font-size="14" opacity="0.7">✨</text>
+        <text x="215" y="75"  font-size="12" opacity="0.6">⭐</text>
+        <text x="55"  y="120" font-size="10" opacity="0.5">💫</text>
+        <text x="220" y="115" font-size="10" opacity="0.5">✨</text>
+      </svg>
+    </div>
+
+    <button class="blow-btn" id="blow-btn" onclick="blowCandles()">
+      🎂 Make a Wish &amp; Blow!
+    </button>
+  </div>
+
+  <!-- ── Wish Overlay ── -->
+  <div class="wish-container" id="wish-container">
+    <div class="wish-box">
+      <span class="wish-crown">👑</span>
+      <div class="wish-title">Happy Birthday,<br>Maryam!</div>
+      <p class="wish-text">
+        Today isn't just a celebration of you getting a year older — it's a celebration
+        of the incredible person you are. You have such a special place in my life, and
+        I honestly don't know what I'd do without our talks and your support.
+        I hope this year brings you as much joy, success, and peace as you give to
+        everyone around you. You deserve the world and more!
+      </p>
+      <div class="wish-hearts">🌸 💗 🌸 💗 🌸</div>
+    </div>
+  </div>
+
+  <script src="HBD.js"></script>
+</body>
+</html>
